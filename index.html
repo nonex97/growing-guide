@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herb & Microgreen Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+    :root {
+        --bg-dark: #0a0a0a;
+        --text-dark: #ffffff;
+        --card-dark: #1a1a1a;
+        --accent: #00ff9d;
+        --gradient-1: #00ff9d;
+        --gradient-2: #00ccff;
+    }
+
+    body {
+        background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 100%);
+        color: var(--text-dark);
+        font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        background: linear-gradient(to right, var(--gradient-1), var(--gradient-2));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 2rem;
+    }
+
+    h2 {
+        color: var(--accent);
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    .card {
+        background: rgba(45, 45, 45, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 255, 157, 0.2);
+        border-color: var(--accent);
+    }
+
+    .card-body {
+        color: var(--text-dark);
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 1rem;
+    }
+
+    .search-container {
+        max-width: 700px;
+        margin: 3rem auto;
+        
+    }
+
+    .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1rem 1.5rem;
+        color: var(--text-dark);
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: var(--accent);
+        box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+        outline: none;
+    }
+
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .herb-section {
+        margin-top: 2rem;
+        padding: 1rem 0;
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 0s, opacity 0.2s linear;
+    }
+
+    .growing-tips {
+        background: rgba(45, 45, 45, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 2.5rem;
+        margin: 4rem 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .growing-tips ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .growing-tips li {
+        padding: 0.8rem 0;
+        padding-left: 2rem;
+        position: relative;
+    }
+
+    .growing-tips li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .container {
+        animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Add a media query for mobile devices */
+    @media (max-width: 768px) {
+        .herb-section {
+            margin-top: 1rem;    /* Even smaller on mobile */
+            padding: 0;   /* Even smaller padding on mobile */
+        }
+
+        .search-container {
+            margin: 0.5rem auto;  /* Reduced from 3rem */
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="text-center mb-5" data-aos="fade-down">Herb & Microgreen Guide</h1>
+        
+        <div class="search-container" data-aos="fade-up">
+            <input type="text" id="searchInput" class="form-control form-control-lg" placeholder="Search herbs and microgreens...">
+        </div>
+
+        <div class="growing-tips" data-aos="fade-up">
+            <h2>General Growing Tips</h2>
+            <ul>
+                <li>Maintain consistent moisture but avoid overwatering</li>
+                <li>Ensure good air circulation to prevent mold</li>
+                <li>Use quality soil or growing medium</li>
+                <li>Provide adequate light - most herbs need 6+ hours of sunlight</li>
+                <li>Harvest regularly to promote growth</li>
+                <li>Keep temperature between 18-24°C (65-75°F)</li>
+            </ul>
+        </div>
+
+        <!-- Culinary Herbs -->
+        <div class="herb-section" data-aos="fade-up">
+            <h2>Culinary Herbs</h2>
+            <div class="row" id="culinaryHerbs">
+                <!-- Cards will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Microgreens -->
+        <div class="herb-section" data-aos="fade-up">
+            <h2>Microgreens</h2>
+            <div class="row" id="microgreens">
+                <!-- Cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+
+        // Herb and Microgreen Data
+        const herbs = {
+            culinary: [
+                {
+                    name: "Garden Cress [Gartenkresse]",
+                    details: "Peppery-flavored small herb",
+                    culinaryUses: "Sandwiches, salads, garnishes", 
+                    growingTips: "Prefers cool weather",
+                    growingTime: "20-30 days to maturity"
+                },
+                {
+                    name: "Lovage [Liebstöckel]", 
+                    details: "Celery-like flavor, tall growing herb",
+                    culinaryUses: "Soups, stews, potato dishes",
+                    growingTips: "Deep soil, full sun to part shade",
+                    growingTime: "90-120 days to maturity"
+                },
+                {
+                    name: "Chives [Schnittlauch]",
+                    details: "Mild onion-flavored grass-like herb", 
+                    culinaryUses: "Garnish, potato dishes, eggs, soups",
+                    growingTips: "Cut often to promote growth",
+                    growingTime: "60-90 days to maturity"
+                },
+                {
+                    name: "Rosemary [Rosmarin]",
+                    details: "Woody herb with pine-like fragrance",
+                    culinaryUses: "Roasted meats, potatoes, bread",
+                    growingTips: "Well-draining soil",
+                    growingTime: "180-240 days to maturity"
+                },
+                {
+                    name: "Parsley [Petersilie]",
+                    details: "Versatile herb with fresh flavor",
+                    culinaryUses: "Universal herb for many dishes, garnishing",
+                    growingTips: "Keep soil moist",
+                    growingTime: "70-90 days to maturity"
+                },
+                {
+                    name: "Summer Savory [Bohnenkraut]",
+                    details: "Peppery herb with thyme-like flavor",
+                    culinaryUses: "Bean dishes, meat, poultry",
+                    growingTips: "Full sun exposure",
+                    growingTime: "60-70 days to maturity"
+                },
+                {
+                    name: "Sage [Salbei]",
+                    details: "Gray-green leaves with earthy flavor",
+                    culinaryUses: "Poultry, pork, stuffing",
+                    growingTips: "Drought tolerant",
+                    growingTime: "75-90 days to maturity"
+                },
+                {
+                    name: "Thyme [Thymian]",
+                    details: "Small-leaved herb with intense flavor",
+                    culinaryUses: "Meat dishes, soups, stews",
+                    growingTips: "Excellent drainage needed",
+                    growingTime: "90-120 days to maturity"
+                },
+                {
+                    name: "Oregano [Oregano]",
+                    details: "Strong, aromatic Mediterranean herb",
+                    culinaryUses: "Pizza, Italian dishes, Mediterranean cuisine",
+                    growingTips: "Well-draining soil, full sun",
+                    growingTime: "80-90 days to maturity"
+                },
+                {
+                    name: "Basil [Basilikum]",
+                    details: "Sweet, aromatic herb",
+                    culinaryUses: "Italian dishes, pesto, salads",
+                    growingTips: "Warm temperatures, regular pruning",
+                    growingTime: "60-90 days to maturity"
+                },
+                {
+                    name: "Dill [Dill]",
+                    details: "Feathery herb with anise-like flavor",
+                    culinaryUses: "Fish dishes, pickles, potatoes",
+                    growingTips: "Deep containers, direct sowing",
+                    growingTime: "40-60 days to maturity"
+                },
+                {
+                    name: "Cilantro [Koriander]",
+                    details: "Fresh, citrusy herb",
+                    culinaryUses: "Mexican, Asian, and Indian dishes",
+                    growingTips: "Cool weather, succession planting",
+                    growingTime: "50-70 days to maturity"
+                }                
+            ],
+            microgreens: [
+                {
+                    name: "White Mustard [Weisser Senf]",
+                    details: "Mild spicy flavor",
+                    culinaryUses: "Salads, sandwiches, garnish",
+                    growingTips: "Keep soil moist",
+                    growingTime: "7-10 days to harvest"
+                },
+                {
+                    name: "Broccoletti [Brokkoletti]",
+                    details: "Mild broccoli flavor",
+                    culinaryUses: "Salads, smoothies, garnish",
+                    growingTips: "Even watering",
+                    growingTime: "10-14 days to harvest"
+                },
+                {
+                    name: "Radish [Rettich]",
+                    details: "Spicy, peppery flavor",
+                    culinaryUses: "Sandwiches, salads, garnish",
+                    growingTips: "Consistent moisture",
+                    growingTime: "5-7 days to harvest"
+                },
+                {
+                    name: "Arugula [Rucola]",
+                    details: "Peppery, nutty flavor",
+                    culinaryUses: "Salads, pizza topping, sandwiches",
+                    growingTips: "Even soil moisture",
+                    growingTime: "7-10 days to harvest"
+                },
+                {
+                    name: "Alfalfa [Alfalfa]",
+                    details: "Mild, fresh flavor",
+                    culinaryUses: "Sandwiches, salads, wraps",
+                    growingTips: "Rinse well during growth",
+                    growingTime: "7-10 days to harvest"
+                },
+                {
+                    name: "Garden Cress [Gartenkresse]",
+                    details: "Peppery, tangy flavor",
+                    culinaryUses: "Sandwiches, soups, salads",
+                    growingTips: "Even moisture",
+                    growingTime: "5-7 days to harvest"
+                },
+                {
+                    name: "Red Mizuna [Mizuna Red]",
+                    details: "Mild mustard flavor",
+                    culinaryUses: "Asian dishes, salads, garnish",
+                    growingTips: "Keep soil damp",
+                    growingTime: "10-14 days to harvest"
+                },
+                {
+                    name: "Radish [Radies]",
+                    details: "Spicy, crisp flavor",
+                    culinaryUses: "Salads, garnish, sandwiches",
+                    growingTips: "Consistent watering",
+                    growingTime: "5-7 days to harvest"
+                }
+            ]
+        };
+
+        
+            // Add additional microgreens
+            herbs.microgreens.push(
+                {
+                    name: "Lentils [Linsen]",
+                    details: "Mild, nutty flavor",
+                    culinaryUses: "Salads, sandwiches, garnish",
+                    growingTips: "Keep soil consistently moist",
+                    growingTime: "7-10 days to harvest"
+                },
+                {
+                    name: "Red Cabbage [Rotkohl]", 
+                    details: "Mild cabbage flavor with purple color",
+                    culinaryUses: "Salads, garnish, slaws",
+                    growingTips: "Even moisture, good air circulation",
+                    growingTime: "8-12 days to harvest"
+                },
+                {
+                    name: "Red Clover [Rotklee]",
+                    details: "Mild, sweet flavor",
+                    culinaryUses: "Salads, sandwiches, smoothies",
+                    growingTips: "Keep soil moist but not wet",
+                    growingTime: "8-12 days to harvest"
+                },
+                {
+                    name: "Fenugreek [Bockshornklee]",
+                    details: "Slightly bitter, maple-like flavor",
+                    culinaryUses: "Indian dishes, salads, garnish",
+                    growingTips: "Maintain warm temperatures",
+                    growingTime: "10-14 days to harvest"
+                },
+                {
+                    name: "Mung Beans [Mungobohnen]",
+                    details: "Crisp, bean-like flavor",
+                    culinaryUses: "Stir-fries, salads, Asian dishes",
+                    growingTips: "Rinse twice daily, good drainage",
+                    growingTime: "6-8 days to harvest"
+                }
+            );
+
+        // Function to create herb cards
+        function createHerbCard(herb) {
+            return `
+                <div class="col-md-6 col-lg-4 mb-4">  <!-- Added mb-4 class here -->
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${herb.name}</h5>
+                            <p>${herb.details}</p>
+                            <p><strong>Uses:</strong> ${herb.culinaryUses}</p>
+                            <p><strong>Growing Tips:</strong> ${herb.growingTips}</p>
+                            <p><strong>Growing Time:</strong> ${herb.growingTime}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+    // Initialize AOS
+    AOS.init();
+
+    // Set search input color
+document.getElementById('searchInput').style.color = 'white';
+
+// Initialize sections with proper visibility
+const culinarySection = document.getElementById('culinaryHerbs').closest('.herb-section');
+const microgreensSection = document.getElementById('microgreens').closest('.herb-section');
+
+// Initial render
+document.getElementById('culinaryHerbs').innerHTML = 
+    herbs.culinary.map(herb => createHerbCard(herb)).join('');
+document.getElementById('microgreens').innerHTML = 
+    herbs.microgreens.map(herb => createHerbCard(herb)).join('');
+
+// Search functionality
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const growingTips = document.querySelector('.growing-tips');
+    
+    if (searchTerm) {
+        growingTips.style.display = 'none';
+    } else {
+        growingTips.style.display = 'block';
+    }
+
+    const filteredCulinary = herbs.culinary.filter(herb => 
+        Object.values(herb).some(val => 
+            val.toString().toLowerCase().includes(searchTerm)
+        )
+    );
+
+    const filteredMicrogreens = herbs.microgreens.filter(herb => 
+        Object.values(herb).some(val => 
+            val.toString().toLowerCase().includes(searchTerm)
+        )
+    );
+
+    // Update visibility and content
+    culinarySection.style.cssText = `
+        display: ${filteredCulinary.length ? 'block' : 'none'};
+        visibility: visible;
+        opacity: 1;
+    `;
+    microgreensSection.style.cssText = `
+        display: ${filteredMicrogreens.length ? 'block' : 'none'};
+        visibility: visible;
+        opacity: 1;
+    `;
+    
+    document.getElementById('culinaryHerbs').innerHTML = 
+        filteredCulinary.map(herb => createHerbCard(herb)).join('');
+    document.getElementById('microgreens').innerHTML = 
+        filteredMicrogreens.map(herb => createHerbCard(herb)).join('');
+});
+
+
+});
+    </script>
+</body>
+</html>
+
+
+
